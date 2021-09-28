@@ -31,7 +31,7 @@ public class RenameTaskManager implements Rename{
 		
 		boolean isObjetoTarefaOuProjeto = obj instanceof Tarefa || obj instanceof Projeto;
 		
-		if(renameValue == "" || renameValue == null || !isObjetoTarefaOuProjeto) {
+		if(renameValue == "" || renameValue == null) {
 			
 			throw new ArgumentoInvalidoException();
 		}

@@ -41,9 +41,8 @@ public class User implements UserI{
 	}
 	
 	public boolean verificarTodasTarefasConcluidas(Projeto p) {
-		
-		boolean hasTarefaConcluida = true;
-		
+	
+			
 		Tarefa tarefaCadastrada;
 		Status statusTarefaCadastrada, pendente, emExecucao;
 		
@@ -53,7 +52,7 @@ public class User implements UserI{
 		List<Tarefa> tarefas = p.getTarefas();
 		Iterator<Tarefa> it = tarefas.iterator();
 		
-		while(it.hasNext() && hasTarefaConcluida) {
+		while(it.hasNext()) {
 			
 			tarefaCadastrada = it.next();
 			statusTarefaCadastrada = tarefaCadastrada.getStatus();
