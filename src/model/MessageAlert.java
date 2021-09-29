@@ -33,6 +33,14 @@ public class MessageAlert {
 		alert.show();
 	}
 	
+	public void getMessageProjetoEditado() {
+		
+		alert = new Alert(AlertType.CONFIRMATION);
+		alert.setContentText("Projeto Editado com Sucesso!");
+		
+		alert.show();
+	}
+	
 	public void getMessageProjetoNaoSelecionada() {
 		
 		alert = new Alert(AlertType.WARNING);

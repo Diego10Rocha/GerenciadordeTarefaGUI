@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 import Exceptions.ArgumentoInvalidoException;
+import Exceptions.ObjetoInexistenteException;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -38,7 +39,7 @@ import model.User;
 public class ProjetosScreenController implements Initializable {
 	
 	@FXML
-    private ListView<Projeto> lvProjetos;
+    private  ListView<Projeto> lvProjetos;
 	
 
     @FXML
@@ -56,7 +57,7 @@ public class ProjetosScreenController implements Initializable {
     @FXML
     private Button editarProjetoBTN;
     
-    private static ObservableList<Projeto> obsProjetos;
+    private  ObservableList<Projeto> obsProjetos;
     
     private static User user = new User();
     private static Projeto projetoSelecionado;
@@ -86,8 +87,24 @@ public class ProjetosScreenController implements Initializable {
     }
 
     @FXML
-    void editarProjeto(ActionEvent event) {
-
+    void editarProjeto(ActionEvent event) throws IOException {
+    	
+    	projetoSelecionado = lvProjetos.getSelectionModel().getSelectedItem();
+    	
+    	if(projetoSelecionado == null) {
+    		
+    		this.msgAlert.getMessageProjetoNaoSelecionada();
+    		
+    	}
+    	
+    	else {
+    		
+    		MainScreenController tempMainScreen = new MainScreenController();
+        	tempMainScreen.openNewScreen("FormularioProjetoScreenEdit", "Edição de Projetos");
+    		
+    	}
+    	
+    	
     }
     
     
@@ -155,6 +172,7 @@ public class ProjetosScreenController implements Initializable {
     	
     	user.setProjeto(projeto);
     	
+    	
     }
     
     
@@ -168,7 +186,18 @@ public class ProjetosScreenController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         
         loadProjetos();
-    }    
+    }
+
+	public static void setProjetoEditado(Projeto projetoEditado, String titulo) throws ObjetoInexistenteException, ArgumentoInvalidoException {
+		
+		Projeto projetoNaoEditado = user.buscarProjetoPorTitulo(titulo);
+		
+		user.excluirProjeto(projetoNaoEditado);
+		
+		user.setProjeto(projetoEditado);
+		
+		
+	}    
     
        
     
