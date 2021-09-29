@@ -1,4 +1,4 @@
-package com.miprogramacao.gerenciadordetarefas.model;
+package model;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -207,6 +207,7 @@ public class User implements UserI{
 		try {
 			
 			Projeto projetoQuePossuiTarefa  = buscarProjetoQuePossuiTarefa(t);
+			
 			projetoQuePossuiTarefa.getTarefas().remove(t);
 			
 			return true;
